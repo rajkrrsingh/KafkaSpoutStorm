@@ -17,9 +17,7 @@ public class Topology {
 	public Properties configs;
 	public BoltBuilder boltBuilder;
 	public SpoutBuilder spoutBuilder;
-	public static final String SOLR_STREAM = "solr-stream";
 	public static final String HDFS_STREAM = "hdfs-stream";
-	public static final String MONGODB_STREAM = "mongodb-stream";
 	
 
 	public Topology(String configFile) throws Exception {
