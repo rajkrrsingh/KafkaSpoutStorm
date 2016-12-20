@@ -1,13 +1,13 @@
 package com.rajkrrsingh.storm;
 
-import backtype.storm.Config;
-import backtype.storm.StormSubmitter;
-import backtype.storm.topology.TopologyBuilder;
+import org.apache.storm.Config;
+import org.apache.storm.StormSubmitter;
+import org.apache.storm.topology.TopologyBuilder;
 import com.rajkrrsingh.storm.bolt.BoltBuilder;
 import com.rajkrrsingh.storm.bolt.SinkTypeBolt;
 import com.rajkrrsingh.storm.spout.SpoutBuilder;
 import org.apache.storm.hdfs.bolt.HdfsBolt;
-import storm.kafka.KafkaSpout;
+import org.apache.storm.kafka.KafkaSpout;
 
 import java.util.Properties;
 
@@ -44,10 +44,9 @@ public class Topology {
 
 		int sinkBoltCount = Integer.parseInt(configs.getProperty(Keys.SINK_BOLT_COUNT));
 		builder.setBolt(configs.getProperty(Keys.SINK_TYPE_BOLT_ID),sinkTypeBolt,sinkBoltCount).shuffleGrouping(configs.getProperty(Keys.KAFKA_SPOUT_ID));
-		
 
-		int hdfsBoltCount = Integer.parseInt(configs.getProperty(Keys.HDFS_BOLT_COUNT));
-		builder.setBolt(configs.getProperty(Keys.HDFS_BOLT_ID),hdfsBolt,hdfsBoltCount).shuffleGrouping(configs.getProperty(Keys.SINK_TYPE_BOLT_ID),HDFS_STREAM);
+		//int hdfsBoltCount = Integer.parseInt(configs.getProperty(Keys.HDFS_BOLT_COUNT));
+		//builder.setBolt(configs.getProperty(Keys.HDFS_BOLT_ID),hdfsBolt,hdfsBoltCount).shuffleGrouping(configs.getProperty(Keys.SINK_TYPE_BOLT_ID),HDFS_STREAM);
 
 		
 		Config conf = new Config();

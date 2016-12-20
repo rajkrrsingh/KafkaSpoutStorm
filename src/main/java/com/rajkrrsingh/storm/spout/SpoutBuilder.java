@@ -1,10 +1,12 @@
 package com.rajkrrsingh.storm.spout;
 
-import backtype.storm.spout.SchemeAsMultiScheme;
 import com.rajkrrsingh.storm.Keys;
-import storm.kafka.*;
+import org.apache.storm.kafka.*;
+import org.apache.storm.spout.SchemeAsMultiScheme;
 
 import java.util.Properties;
+
+//import storm.kafka.*;
 
 
 public class SpoutBuilder {
@@ -21,6 +23,7 @@ public class SpoutBuilder {
 		String groupId = configs.getProperty(Keys.KAFKA_CONSUMERGROUP);
 		SpoutConfig spoutConfig = new SpoutConfig(hosts, topic, zkRoot, groupId);
 		spoutConfig.scheme = new SchemeAsMultiScheme(new StringScheme());
+		spoutConfig.securityProtocol="PLAINTEXTSASL";
 		KafkaSpout kafkaSpout = new KafkaSpout(spoutConfig);
 		return kafkaSpout;
 	}
